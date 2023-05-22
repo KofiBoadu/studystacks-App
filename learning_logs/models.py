@@ -15,7 +15,7 @@ class Topic(models.Model):
 		return self.text
 
 
-class Entry_ofWhatUserLearnt(models.Model):
+class Entry(models.Model):
 	"""what the user learned about a topic"""
 	topic= models.ForeignKey(Topic,on_delete=models.CASCADE)
 	text= models.TextField()
