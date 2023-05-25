@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User 
 
 #we will need to create models such as class to tell Django how to work 
 #with the data we will be providing .
@@ -9,6 +10,7 @@ class Topic(models.Model):
 	"""A topic the user is learning about """
 	text= models.CharField(max_length=200)
 	date_added= models.DateTimeField(auto_now_add=True)
+	owner=models.ForeignKey(User,on_delete=models.CASCADE)
 
 	def __str__(self):
 		"""Return a string version of the model or our class"""

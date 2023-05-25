@@ -1,5 +1,20 @@
 {% extends "learning_logs/base.html" %}
 
+
+{% block header %}
+
+<div class="jumbotron">
+	<h1>The Smarter Way to Study</h1>
+</div>
+{% endblock header %}
+
 {% block content %}
-<p> LEARNING LOG HELPS YOU KEEP TRACK OF OF YOUR LEARNING, FOR ANY TOPIC YOU ARE LEARNIGN ABOUT </p>
+<h2>
+	<a href="{% url 'users:register' %}">Register an account </a>
+	and Step into a World of Streamlined Learning:Join Study Stacks Now!
+</h2>
+
+<h2>
+	Maximize your learning with Study Stacks! Easily create topics and entries as you master new concepts. Reinforce knowledge, revisit insights, and curate your unique learning journey. Start building your Study Stacks today!
+</h2>
 {% endblock content %}

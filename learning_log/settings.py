@@ -1,3 +1,5 @@
+import django_heroku
+
 """
 Django settings for learning_log project.
 
@@ -39,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
         #MY APPLICATIONS 
     'learning_logs',
+    'users',
+
+    #Third parties apps
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -117,9 +123,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    BASE_DIR / 'static',
+)
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#find the login page 
+LOGIN_URL='/users/login/'
+
+#SETTINGS FOR BOOSTRAP3
+BOOTSTRAPS3={
+    'include_jquery':True,
+}
+
+django_heroku.settings(locals())
