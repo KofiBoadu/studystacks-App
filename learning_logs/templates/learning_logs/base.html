@@ -9,70 +9,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyStacks</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static  'learning_logs/style.css' %}">
 
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
 </head>
-
-
-<body>
+<body class="study-body">
     
-    <!--STATIC NAV BA -->
+    <!--STATIC NAV BAR -->
+    <nav class="navbar navbar-default study-navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'learning_logs:index' %}">StudyStacks</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="#">Hello, {{user.username}}.</a></li>
+                        <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:register' %}">Register</a></li>
+                        <li><a href="{% url 'users:login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
 
-    <nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'learning_logs:index' %}">StudyStacks</a>
+     <div class="container study-container">
+        <div class="page-header study-header">
+            {% block header %}{% endblock header %}
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated %}
-                    <li><a href="#">Hello, {{user.username}}.</a></li>
-                    <li><a href="{% url 'users:logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'users:register' %}">Register</a></li>
-                    <li><a href="{% url 'users:login' %}">Login</a></li>
-                {% endif %}
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
-</nav>
+
+        <div class="study-content">
+            {% block content %}{% endblock content %}
+        </div>  
+     </div> 
 
 
-     <!-- end of NAV BAR -->
+     <div class="study-card-container">
+        <div class="study-card">
+            <img src="https://images.pexels.com/photos/4126743/pexels-photo-4126743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Kids studying">
+        </div>
+        <div class="study-card">
+            <img src="https://images.pexels.com/photos/3823494/pexels-photo-3823494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Kids studying">
+        </div>
+        <div class="study-card">
+            <img src="https://images.pexels.com/photos/4559597/pexels-photo-4559597.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Kids studying">
+        </div>
+    </div>
+    
+    
+     
+     
 
-
-     <div class="container">
-
-     	<div class="page-header">
-     		{% block header %}{% endblock header %}
-     		
-     	</div>
-
-     	<div>
-     		{% block content %}
-
-     		{% endblock content %}
-     	</div>
-     	
-     </div>
-     		
+    <footer class="study-footer">
+        <div class="container text-center">
+            <a href=""><i class="fab fa-instagram fa-2x"></i></a>
+            <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+            <p>Email: info@example.com</p>
+            <p>Address: 123 Street, City, Country</p>
+        </div>
+    </footer>
+    
 </body>
-
-
-
 </html>
+
 
 
 
